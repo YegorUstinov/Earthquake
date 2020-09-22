@@ -72,7 +72,7 @@ public class EarthquakeService extends IntentService {
         URL url;
         final String DATE_FORMAT = "yyyy-MM-dd";
         SimpleDateFormat formater = new SimpleDateFormat(DATE_FORMAT);
-        formater.setTimeZone(TimeZone.getTimeZone("GMT-11"));
+        formater.setTimeZone(TimeZone.getTimeZone("GMT-12"));
         Calendar currentTime = Calendar.getInstance();
         String timeStr = formater.format(currentTime.getTime());
         Log.w(TAG, "Date is: " + timeStr);
@@ -111,7 +111,7 @@ public class EarthquakeService extends IntentService {
                         String longiStr = longi.getFirstChild().getNodeValue();
                         Element lati = (Element) latiTude.getElementsByTagName("value").item(0);
                         String latiStr = lati.getFirstChild().getNodeValue();
-                        String location = latiStr + " N, " + longiStr + " E";
+                        String location = latiStr + " " + longiStr;
 
                         Element title = (Element) entry.getElementsByTagName("text").item(0);
                         String details = title.getFirstChild().getNodeValue();

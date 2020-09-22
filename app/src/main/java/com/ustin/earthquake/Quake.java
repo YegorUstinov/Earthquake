@@ -40,6 +40,6 @@ public class Quake {
         String dateString = sdf.format(date);
         String dStr = df.format(date);
 
-        return "Local Time: " + dateString + "\nDate: " + dStr + "\nMagnitude: " + magnitude + "\nDetails: " + details + "\nLocation: " + location;
+        return "Time(UTC): " + dateString + "\nDate(UTC): " + dStr + "\nMagnitude: " + magnitude + "\nDetails: " + details + "\nLocation: " + location;
     }
 }
