@@ -36,6 +36,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+// класс получает и записывает данные в бд
 public class EarthquakeService extends IntentService {
     public static String TAG = "EARTHQUAKE_UPDATE_SERVICE";
 
@@ -52,6 +53,7 @@ public class EarthquakeService extends IntentService {
         super(name);
     }
 
+    // ?
     @Override
     protected void onHandleIntent(Intent intent) {
         Context context = getApplicationContext();
@@ -68,6 +70,7 @@ public class EarthquakeService extends IntentService {
         refreshEarthquakes();
     }
 
+    // этот метод парсит данные о землетрясениях из usgs.gov путем сервисного запроса к сайту и получения xml документа
     public void refreshEarthquakes() {
         URL url;
         final String DATE_FORMAT = "yyyy-MM-dd";
@@ -149,7 +152,7 @@ public class EarthquakeService extends IntentService {
         }
     }
 
-
+    // этот метод добавляет запись в БД
     private void addNewQuake(Quake _quake) {
         ContentResolver cr = getContentResolver();
         String w = EarthquakeProvider.KEY_DATE + " = " + _quake.getDate().getTime();

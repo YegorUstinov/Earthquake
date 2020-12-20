@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.util.Log;
 
+// класс создает активити настроек программы
 public class PreferencesActivity extends PreferenceActivity {
 
     public static final String PREF_AUTO_UPDATE = "PREF_AUTO_UPDATE";

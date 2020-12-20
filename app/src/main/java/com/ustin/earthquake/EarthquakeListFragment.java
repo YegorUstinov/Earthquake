@@ -22,6 +22,7 @@ public class EarthquakeListFragment extends ListFragment implements LoaderManage
     private static final String TAG = "<==EARTHQUAKE_LIST_FRAGMENT==> ";
     private Handler handler = new Handler();
 
+    // метод загружает данные из бд и создает фрагменты для отображения пользователю
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -36,6 +37,7 @@ public class EarthquakeListFragment extends ListFragment implements LoaderManage
         refreshEarthquakes();
     }
 
+    // метод обновляет экран отображения данных каждый раз при появлении новой записи
     public void refreshEarthquakes() {
         handler.post(new Runnable() {
             @Override
@@ -47,6 +49,7 @@ public class EarthquakeListFragment extends ListFragment implements LoaderManage
         });
     }
 
+    // метод отображает данные из бд основанные на настройке отображения(по магнитуде)
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         String[] projection = new String[]{EarthquakeProvider.KEY_ID, EarthquakeProvider.KEY_SUMMARY};
@@ -62,18 +65,22 @@ public class EarthquakeListFragment extends ListFragment implements LoaderManage
         return loader;
     }
 
+    // часть LoaderManager
     @Override
     public void onLoadFinished(@NonNull androidx.loader.content.Loader<Cursor> loader, Cursor data) {
         adapter.swapCursor(data);
         Log.w(TAG, "onLoadFinished");
     }
 
+    // часть LoaderManager
     @Override
     public void onLoaderReset(@NonNull androidx.loader.content.Loader<Cursor> loader) {
         adapter.swapCursor(null);
         Log.w(TAG, "onLoaderReset");
     }
 
+    // в этом методе происхлдит реакция на нажатие пользователем на запись(фрагмет listItemView)
+    // и происходит удаление записи из бд(функция в данный момент заблокирована)
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         //String where = EarthquakeProvider.KEY_ID + "=" + id;

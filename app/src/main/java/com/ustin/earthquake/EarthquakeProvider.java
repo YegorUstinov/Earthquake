@@ -17,6 +17,7 @@ import android.util.Log;
 
 import java.util.HashMap;
 
+// класс является скелетом бд
 public class EarthquakeProvider extends ContentProvider {
 
     public static final Uri CONTENT_URI = Uri.parse("content://com.ustin.earthquakeprovider/earthquakes");

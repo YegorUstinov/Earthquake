@@ -3,6 +3,7 @@ package com.ustin.earthquake;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// класс создает запись в фрагмет для отображения пользователю
 public class Quake {
     private Date date;
     private String details;
