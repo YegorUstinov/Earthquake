@@ -11,7 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+// !!!!добавить карты, графики по разным критериям, возможно добавить прогнозирование!!!!
 public class MainActivity extends AppCompatActivity {
 
     static final private int SHOW_PREFERENCES = 1;
@@ -21,12 +21,13 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "<==MAIN_ACTIVITY==> ";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.w(TAG, "onCreate");
         updateFromPreferences();
         Log.w(TAG, "onCreate updateFromPreferences");
+
     }
 
     @Override

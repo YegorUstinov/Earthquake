@@ -1,6 +1,5 @@
 package com.ustin.earthquake;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 // класс создает запись в фрагмет для отображения пользователю
@@ -36,11 +35,6 @@ public class Quake {
 
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH.mm");
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = sdf.format(date);
-        String dStr = df.format(date);
-
-        return "Time(UTC): " + dateString + "\nDate(UTC): " + dStr + "\nMagnitude: " + magnitude + "\nDetails: " + details + "\nLocation: " + location;
+        return details;
     }
 }

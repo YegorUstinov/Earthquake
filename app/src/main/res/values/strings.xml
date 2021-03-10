@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Earthquake by Yegor Hackerman</string>
+    <string name="app_name">Earthquake</string>
     <string name="menu_refresh">Refresh</string>
     <string name="menu_update">Refresh Earthquakes</string>
     <string name="auto_update_prompt">Auto Update?</string>

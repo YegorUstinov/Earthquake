@@ -1,5 +1,7 @@
 package com.ustin.earthquake;
 
+import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -10,10 +12,13 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.ListFragment;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
+
+import java.util.Date;
 
 public class EarthquakeListFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -79,14 +84,25 @@ public class EarthquakeListFragment extends ListFragment implements LoaderManage
         Log.w(TAG, "onLoaderReset");
     }
 
-    // в этом методе происхлдит реакция на нажатие пользователем на запись(фрагмет listItemView)
-    // и происходит удаление записи из бд(функция в данный момент заблокирована)
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        //String where = EarthquakeProvider.KEY_ID + "=" + id;
-        //String whereArgs[] = null;
-        //ContentResolver cr = getActivity().getContentResolver();
-        //cr.delete(EarthquakeProvider.CONTENT_URI, where, whereArgs);
+        super.onListItemClick(l, v, position, id);
+        ContentResolver cr = getActivity().getContentResolver();
+        Cursor result = cr.query(ContentUris.withAppendedId(EarthquakeProvider.CONTENT_URI, id),
+                null, null, null, null, null);
+
+        if (result.moveToFirst()) {
+            Date date = new Date(result.getLong(result.getColumnIndex(EarthquakeProvider.KEY_DATE)));
+            String details = result.getString(result.getColumnIndex(EarthquakeProvider.KEY_DETAILS));
+            double magnitude = result.getDouble(result.getColumnIndex(EarthquakeProvider.KEY_MAGNITUDE));
+            String location = result.getString(result.getColumnIndex(EarthquakeProvider.KEY_LOCATION));
+
+            Quake quake = new Quake(date, details, magnitude, location);
+
+            DialogFragment newFragment = EarthquakeDialog.newInstance(getActivity(), quake);
+            newFragment.show(getFragmentManager(), "dialog");
+        }
+
         Log.w(TAG, "onListItemClick " + id);
     }
 }
