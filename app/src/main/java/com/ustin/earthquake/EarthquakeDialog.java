@@ -21,7 +21,10 @@ public class EarthquakeDialog extends DialogFragment {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String dateString = simpleDateFormat.format(quake.getDate());
-        String quakeText = dateString + "\n" + "Magnitude " + quake.getMagnitude() + "\n" + quake.getDetails();
+        String quakeText = dateString + "\n"
+                + "Magnitude " + quake.getMagnitude() + "\n"
+                + quake.getDetails() + "\n"
+                + "Location " + quake.getLocation();
         args.putString(DIALOG_STRING, quakeText);
         fragment.setArguments(args);
         return fragment;

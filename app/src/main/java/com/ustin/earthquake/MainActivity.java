@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         Log.w(TAG, "onCreate");
         updateFromPreferences();
         Log.w(TAG, "onCreate updateFromPreferences");
-
     }
 
     @Override
