@@ -50,19 +50,30 @@ public class EarthquakeService extends IntentService {
     public static final int NOTIFICATION_ID = 1;
 
     @Override
-    public IBinder onBind(Intent intent) {
-        return null;
+    public void onCreate() {
+        super.onCreate();
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        String ALARM_ACTION;
+        ALARM_ACTION = EarthquakeAlarmReceiver.ACTION_REFRESH_EARTHQUAKE_ALARM;
+        Intent intentToFire = new Intent(ALARM_ACTION);
+        alarmIntent = PendingIntent.getBroadcast(this, 0, intentToFire, 0);
+        earthquakeNotificationBuilder = new Notification.Builder(this);
+        earthquakeNotificationBuilder.
+                setAutoCancel(true).
+                setTicker("Earthquake detected").
+                setSmallIcon(R.drawable.ic_launcher_foreground);
     }
 
     public EarthquakeService() {
         super("EarthquakeUpdateService");
     }
 
-    public EarthquakeService(String name) {
-        super(name);
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 
-    // ?
+
     @Override
     protected void onHandleIntent(Intent intent) {
         Context context = getApplicationContext();
@@ -209,20 +220,5 @@ public class EarthquakeService extends IntentService {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(NOTIFICATION_ID, earthquakeNotificationBuilder.getNotification());
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        String ALARM_ACTION;
-        ALARM_ACTION = EarthquakeAlarmReceiver.ACTION_REFRESH_EARTHQUAKE_ALARM;
-        Intent intentToFire = new Intent(ALARM_ACTION);
-        alarmIntent = PendingIntent.getBroadcast(this, 0, intentToFire, 0);
-        earthquakeNotificationBuilder = new Notification.Builder(this);
-        earthquakeNotificationBuilder.
-                setAutoCancel(true).
-                setTicker("Earthquake detected").
-                setSmallIcon(R.drawable.ic_launcher_foreground);
     }
 }

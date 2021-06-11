@@ -70,14 +70,12 @@ public class EarthquakeListFragment extends ListFragment implements LoaderManage
         return loader;
     }
 
-    // часть LoaderManager
     @Override
     public void onLoadFinished(@NonNull androidx.loader.content.Loader<Cursor> loader, Cursor data) {
         adapter.swapCursor(data);
         Log.w(TAG, "onLoadFinished");
     }
 
-    // часть LoaderManager
     @Override
     public void onLoaderReset(@NonNull androidx.loader.content.Loader<Cursor> loader) {
         adapter.swapCursor(null);
