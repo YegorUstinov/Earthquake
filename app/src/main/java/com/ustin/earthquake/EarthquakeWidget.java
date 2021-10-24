@@ -24,7 +24,7 @@ public class EarthquakeWidget extends AppWidgetProvider {
 
         if (lastEarthquake != null) {
             try {
-                if (lastEarthquake.moveToFirst()) {
+                if (lastEarthquake.moveToLast()) {
                     int magColumn = lastEarthquake.getColumnIndexOrThrow(EarthquakeProvider.KEY_MAGNITUDE);
                     int detailColumn = lastEarthquake.getColumnIndexOrThrow(EarthquakeProvider.KEY_DETAILS);
                     magnitude = lastEarthquake.getString(magColumn);

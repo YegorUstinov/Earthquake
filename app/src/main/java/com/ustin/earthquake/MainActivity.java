@@ -12,7 +12,6 @@ import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-// !!!!добавить карты, графики по разным критериям, возможно добавить прогнозирование!!!!
 public class MainActivity extends AppCompatActivity {
 
     static final private int SHOW_PREFERENCES = 1;
