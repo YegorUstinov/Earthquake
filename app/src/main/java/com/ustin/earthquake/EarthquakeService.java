@@ -74,6 +74,8 @@ public class EarthquakeService extends IntentService {
     }
 
 
+    public static String QUAKES_REFRESHED = "com.ustin.earthquake.QUAKES_REFRESHED";
+
     @Override
     protected void onHandleIntent(Intent intent) {
         Context context = getApplicationContext();
@@ -88,6 +90,7 @@ public class EarthquakeService extends IntentService {
             alarmManager.cancel(alarmIntent);
         }
         refreshEarthquakes();
+        sendBroadcast(new Intent(QUAKES_REFRESHED));
     }
 
     // этот метод парсит данные о землетрясениях из usgs.gov путем сервисного запроса к сайту и получения xml документа
